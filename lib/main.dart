@@ -31,6 +31,8 @@ class MyHomePage extends StatelessWidget {
         date: DateTime.now(),
       ),
     ];
+    String titleInput;
+    String amountInput;
 
     return Scaffold(
       appBar: AppBar(
@@ -51,8 +53,14 @@ class MyHomePage extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(5),
               child: Column(children: <Widget>[
-                TextField(decoration: InputDecoration(labelText: 'Title'),),
-                TextField(decoration: InputDecoration(labelText: 'Amount'),),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Title'),
+                  onChanged: (val) => titleInput = val,
+                ),
+                TextField(
+                  decoration: InputDecoration(labelText: 'Amount'),
+                  onChanged: (val) => amountInput = val,
+                ),
                 TextButton(
                     onPressed: null,
                     child: Text(
