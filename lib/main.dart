@@ -15,8 +15,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.purple,
           accentColor: Colors.amber,
-          fontFamily: 'Quicksand'
-      ),
+          fontFamily: 'Quicksand',
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                      fontFamily: 'OpenSans', fontWeight: FontWeight.bold)))),
       home: MyHomePage(),
     );
   }
@@ -48,8 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: transactionTitle,
         amount: transactionAmount,
         date: DateTime.now(),
-        id: DateTime.now().toString()
-    );
+        id: DateTime.now().toString());
 
     setState(() {
       _userTransaction.add(newTransaction);
@@ -64,40 +66,42 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text(
+          'Flutter App',
+          style: TextStyle(fontFamily: 'OpenSans'),
+        ),
         actions: <Widget>[
           IconButton(
               onPressed: () => _startAddNewTransaction(context),
-              icon: Icon(Icons.add,)
-          ),
+              icon: Icon(
+                Icons.add,
+              )),
         ],
       ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                child: Card(
-                  color: Colors.blue,
-                  child: Text('CHART'),
-                  elevation: 5,
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                child: Text('CHART'),
+                elevation: 5,
               ),
-              TransactionList(_userTransaction)
-            ],
-          ),
+            ),
+            TransactionList(_userTransaction)
+          ],
         ),
-    floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-    floatingActionButton: FloatingActionButton(
-      child: Icon(Icons.add),
-      onPressed: () => _startAddNewTransaction(context),
-    ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _startAddNewTransaction(context),
+      ),
     );
   }
 }
